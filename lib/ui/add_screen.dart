@@ -19,35 +19,38 @@ class TodoAddState extends State<StatefulWidget> {
       appBar: AppBar(
         title: Text('New Subject'),
       ),
-      body: Form(
-        key: _formkey,
-        child: ListView(
-          children: <Widget>[
-            TextFormField(
-              controller: subjectTodo,
-              decoration: InputDecoration(labelText: 'Subject'),
-              validator: (value){
-                if(value.isEmpty){
-                  return "Please fill subject";
-                }
-              },
-            ),
-            RaisedButton(
-              child: Text('Save'),
-              onPressed: () async {
-                _formkey.currentState.validate();
-                if (subjectTodo.text.length > 0) {             
-                  await db.open("todo.db");
-                  Todo todo = Todo();
-                  todo.title = subjectTodo.text;
-                  todo.done = false;
-                  await db.insert(todo);
-                  print(todo);
-                  Navigator.pop(context, true);
-                }
-              },
-            )
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: _formkey,
+          child: ListView(
+            children: <Widget>[
+              TextFormField(
+                controller: subjectTodo,
+                decoration: InputDecoration(labelText: 'Subject'),
+                validator: (value){
+                  if(value.isEmpty){
+                    return "Please fill subject";
+                  }
+                },
+              ),
+              RaisedButton(
+                child: Text('Save'),
+                onPressed: () async {
+                  _formkey.currentState.validate();
+                  if (subjectTodo.text.length > 0) {             
+                    await db.open("todo.db");
+                    Todo todo = Todo();
+                    todo.title = subjectTodo.text;
+                    todo.done = false;
+                    await db.insert(todo);
+                    print(todo);
+                    Navigator.pop(context, true);
+                  }
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

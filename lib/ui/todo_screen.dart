@@ -10,7 +10,6 @@ class TodoScreen extends StatefulWidget {
 }
 
 class TodoScreenState extends State {
-  bool test = false;
   int _current_state = 0;
   int countTodo = 0;
   int countDone = 0;
@@ -132,7 +131,7 @@ class TodoScreenState extends State {
             BottomNavigationBarItem(
                 icon: Icon(Icons.list), title: Text('Task')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.done_all), title: Text('Complete'))
+                icon: Icon(Icons.done_all), title: Text('Completed'))
           ],
           onTap: (int index) {
             setState(() {

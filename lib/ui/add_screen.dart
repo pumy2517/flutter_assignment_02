@@ -38,13 +38,12 @@ class TodoAddState extends State<StatefulWidget> {
                 child: Text('Save'),
                 onPressed: () async {
                   _formkey.currentState.validate();
-                  if (subjectTodo.text.length > 0) {             
+                  if (subjectTodo.text.isNotEmpty) {             
                     await db.open("todo.db");
                     Todo todo = Todo();
                     todo.title = subjectTodo.text;
                     todo.done = false;
                     await db.insert(todo);
-                    print(todo);
                     Navigator.pop(context, true);
                   }
                 },
